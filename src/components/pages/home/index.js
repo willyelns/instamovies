@@ -74,14 +74,20 @@ export default function HomePage({ navigation }) {
       <FlatList
         data={movies}
         keyExtractor={movie => String(movie.id)}
+        // Infinity scroll
         onEndReached={() => {
-          loadPage();
+          getMovies();
         }}
+        // Percent to active new request
         onEndReachedThreshold={0.1}
+        // Loading component
         ListFooterComponent={loading && <Loading />}
+        // pull to refresh
         onRefresh={refreshList}
         refreshing={refreshing}
+        // Lazyloading
         onViewableItemsChanged={handleViewableChanged}
+        // Percent to active lazyloading
         viewabilityConfig={{ viewAreaCoveragePercentThreshold: 20 }}
         renderItem={({ item }) => (
           <Movie>
