@@ -21,6 +21,7 @@ import LazyImage from "../../common/lazy-image";
 import { Ionicons } from "@expo/vector-icons";
 import HttpClient from "../../../services/HttpClient";
 import MovieConfig from "../../../services/MovieConfig";
+import moment from "moment";
 
 export default function HomePage({ navigation }) {
   const [movies, setMovie] = useState([]);
@@ -106,7 +107,11 @@ export default function HomePage({ navigation }) {
               <ResumeBlock>
                 <ResumeItem>
                   <Ionicons name="md-calendar" size={15} />
-                  <ResumeText>{item.release_date}</ResumeText>
+                  <ResumeText>
+                    {moment(item.release_date, "YYYY-MM-DD", true).format(
+                      "DD/MM/YYYY"
+                    )}
+                  </ResumeText>
                 </ResumeItem>
                 <ResumeItem>
                   <Ionicons name="md-heart" size={15} />
